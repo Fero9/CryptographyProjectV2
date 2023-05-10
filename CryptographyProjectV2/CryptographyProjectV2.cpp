@@ -159,3 +159,30 @@ int main()
 
     return 0;
 }
+
+/*
+* The RSA cryptographic algorithm is based on the mathematical properties of prime numbers and modular arithmetic. Here's a high-level explanation of how the RSA algorithm works:
+
+1. Key Generation:
+   - Select two distinct prime numbers, typically denoted as `p` and `q`.
+   - Calculate the modulus `n` by multiplying `p` and `q`: `n = p * q`.
+   - Calculate Euler's totient function of `n` as `phi(n) = (p - 1) * (q - 1)`.
+   - Choose a public exponent `e` that is relatively prime to `phi(n)` (i.e., `gcd(e, phi(n)) = 1`).
+   - Calculate the private exponent `d` such that `(d * e) % phi(n) = 1`.
+   - The public key is `(n, e)`, and the private key is `(n, d)`.
+
+2. Encryption:
+   - Convert the plaintext message into a numeric representation.
+   - Use the recipient's public key `(n, e)` to encrypt the message.
+   - Apply modular exponentiation: `ciphertext = (message^e) % n`.
+   - The resulting ciphertext is the encrypted message.
+
+3. Decryption:
+   - Use the recipient's private key `(n, d)` to decrypt the ciphertext.
+   - Apply modular exponentiation: `plaintext = (ciphertext^d) % n`.
+   - The resulting plaintext is the decrypted message.
+
+The security of RSA relies on the difficulty of factoring large numbers. Given a large modulus `n`, it is computationally infeasible to determine the prime factors `p` and `q`, and thus calculating `phi(n)` and finding the private key exponent `d` becomes difficult. Therefore, an attacker would not be able to decrypt the ciphertext without knowledge of the prime factors `p` and `q`.
+
+It's worth mentioning that in real-world RSA implementations, additional security measures such as padding schemes and hashing functions are used to enhance the security and prevent common attacks.
+*/
